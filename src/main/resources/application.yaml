@@ -1,0 +1,45 @@
+spring:
+  #Here's settings for connection to embedded testcontainers's db
+  datasource:
+    url: jdbc:postgresql://${embedded.postgresql.host}:${embedded.postgresql.port}/${embedded.postgresql.schema}
+    username: ${embedded.postgresql.user}
+    password: ${embedded.postgresql.password}
+    hikari:
+      maximum-pool-size: 10
+  flyway:
+    enabled: true
+  kafka:
+    bootstrap-servers: ${embedded.kafka.brokerList}
+    consumer:
+      group-id: tx-validation-svc
+      isolation-level: read_committed
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        partition:
+          assignment:
+            strategy: org.apache.kafka.clients.consumer.RoundRobinAssignor
+        spring.json.trusted.packages: "com.github.ivnmrtk.transactionsvalidationservice.dto"
+    producer:
+      acks: all
+      transaction-id-prefix: tx-validation-svc
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        enable.idempotence: true
+        retry.backoff.ms: 500
+        linger.ms: 15
+    listener:
+      ack-mode: record
+topics:
+  transactions:
+    name: transactions-data-topic
+    replication-factor: 1
+    partitions: 1
+  notifications:
+    name: notifications-data-topic
+    replication-factor: 1
+    partitions: 1
+
