@@ -17,6 +17,7 @@
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.1</spring-cloud.version>
         <embeded.postgres.version>2.0.0</embeded.postgres.version>
+        <embeded.kafka.version>2.0.0</embeded.kafka.version>
     </properties>
     <dependencies>
         <dependency>
@@ -33,7 +34,8 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter</artifactId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.kafka</groupId>
@@ -61,6 +63,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
@@ -72,26 +79,13 @@
             <!--Test scope disabled to run service connected with db within container -->
             <!--<scope>test</scope>-->
         </dependency>
-        <!--
-                <dependency>
-                    <groupId>com.playtika.testcontainers</groupId>
-                    <artifactId>embedded-kafka</artifactId>
-                    <version>${embeded.kafka.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                -->
+        <dependency>
+            <groupId>com.playtika.testcontainers</groupId>
+            <artifactId>embedded-kafka</artifactId>
+            <version>${embeded.kafka.version}</version>
+            <!--scope>test</scope-->
+        </dependency>
     </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>

@@ -24,7 +24,7 @@ spring:
         spring.json.trusted.packages: "com.github.ivnmrtk.transactionsvalidationservice.dto"
     producer:
       acks: all
-      transaction-id-prefix: tx-validation-svc
+      transaction-id-prefix: tx-validation-svc-
       key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
@@ -32,7 +32,7 @@ spring:
         retry.backoff.ms: 500
         linger.ms: 15
     listener:
-      ack-mode: record
+      ack-mode: manual
 topics:
   transactions:
     name: transactions-data-topic
@@ -42,4 +42,5 @@ topics:
     name: notifications-data-topic
     replication-factor: 1
     partitions: 1
-
+notification-channels:
+  enabledChannels: KAFKA

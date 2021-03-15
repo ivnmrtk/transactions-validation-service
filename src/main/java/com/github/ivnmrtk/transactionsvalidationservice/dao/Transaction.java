@@ -1,4 +1,4 @@
-package com.github.ivnmrtk.transactionsvalidationservice.model;
+package com.github.ivnmrtk.transactionsvalidationservice.dao;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @Table(name = "transactions")
-public class Transactions {
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactions_id_seq")

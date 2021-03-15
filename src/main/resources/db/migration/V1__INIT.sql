@@ -1,3 +1,4 @@
+--create schema
 CREATE TABLE IF NOT EXISTS transactions
 (
     id     SERIAL PRIMARY KEY,
@@ -5,6 +6,7 @@ CREATE TABLE IF NOT EXISTS transactions
     data   JSON
 );
 
+--insert data
 INSERT INTO transactions (id, amount, data) VALUES
 (123, 100.05, '{"a":1,"b":2}'::json),
 (124, 150.75, '{"a":10,"b":20}'::json),
