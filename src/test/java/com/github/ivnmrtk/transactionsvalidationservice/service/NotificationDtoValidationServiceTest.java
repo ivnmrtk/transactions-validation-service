@@ -1,10 +1,11 @@
 package com.github.ivnmrtk.transactionsvalidationservice.service;
 
-import com.github.ivnmrtk.transactionsvalidationservice.dto.ValidationState;
+import com.github.ivnmrtk.transactionsvalidationservice.enumerations.ValidationState;
 import com.github.ivnmrtk.transactionsvalidationservice.exception.ValidationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 @Sql("/transactions-test-data.sql")
-class NotificationDtoValidationServiceTest {
+class NotificationDtoValidationServiceTest extends AbstractKafkaIntegrationTest {
 
     @Autowired
     private NotificationDtoValidationService notificationDtoValidationService;

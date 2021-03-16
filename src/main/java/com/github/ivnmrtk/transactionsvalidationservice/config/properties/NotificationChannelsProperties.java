@@ -1,5 +1,6 @@
 package com.github.ivnmrtk.transactionsvalidationservice.config.properties;
 
+import com.github.ivnmrtk.transactionsvalidationservice.enumerations.NotificationChannel;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;

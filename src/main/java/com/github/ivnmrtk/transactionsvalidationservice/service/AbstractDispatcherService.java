@@ -1,6 +1,6 @@
 package com.github.ivnmrtk.transactionsvalidationservice.service;
 
-import com.github.ivnmrtk.transactionsvalidationservice.config.properties.NotificationChannel;
+import com.github.ivnmrtk.transactionsvalidationservice.enumerations.NotificationChannel;
 
 public abstract class AbstractDispatcherService<T> {
 
@@ -11,6 +11,7 @@ public abstract class AbstractDispatcherService<T> {
         switch (channel) {
             case KAFKA:
                 senderService.sendToKafka(notificationDto);
+                break;
             //should be more cases for other channels
         }
     }

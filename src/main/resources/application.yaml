@@ -1,3 +1,4 @@
+
 spring:
   #Here's settings for connection to embedded testcontainers's db
   datasource:
@@ -9,6 +10,7 @@ spring:
   flyway:
     enabled: true
   kafka:
+    #Here's settings for connection to embedded testcontainers's kafka broker
     bootstrap-servers: ${embedded.kafka.brokerList}
     consumer:
       group-id: tx-validation-svc
@@ -44,3 +46,8 @@ topics:
     partitions: 1
 notification-channels:
   enabledChannels: KAFKA
+server:
+  port: 1221
+logging:
+  file:
+    name: tx-validation-svc.log

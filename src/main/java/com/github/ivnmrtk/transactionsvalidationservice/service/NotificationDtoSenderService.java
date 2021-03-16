@@ -2,7 +2,7 @@ package com.github.ivnmrtk.transactionsvalidationservice.service;
 
 import com.github.ivnmrtk.transactionsvalidationservice.config.properties.KafkaTopicsProperties;
 import com.github.ivnmrtk.transactionsvalidationservice.dto.NotificationDto;
-import com.github.ivnmrtk.transactionsvalidationservice.exception.KafkaSendException;
+import com.github.ivnmrtk.transactionsvalidationservice.exception.KafkaSenderException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class NotificationDtoSenderService implements SenderService<NotificationD
             log.info("Message with notification: {} was successfully sent to topic: {}", notification, notificationTopicName);
         } catch (Exception e) {
             log.error("Error while sending notification: {}", notification, e);
-            throw new KafkaSendException(e);
+            throw new KafkaSenderException(e);
         }
     }
 }

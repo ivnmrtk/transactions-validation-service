@@ -1,6 +1,6 @@
 package com.github.ivnmrtk.transactionsvalidationservice.listener;
 
-import com.github.ivnmrtk.transactionsvalidationservice.dto.ExternalKafkaTransactionDto;
+import com.github.ivnmrtk.transactionsvalidationservice.dto.ExternalTransactionDto;
 import com.github.ivnmrtk.transactionsvalidationservice.service.DefaultDispatcherService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,15 +16,15 @@ public class TransactionKafkaListener {
     private final DefaultDispatcherService defaultDispatcherService;
 
     @KafkaListener(topics = "${topics.transactions.name}")
-    public void listenTransactions(final ExternalKafkaTransactionDto externalKafkaTransactionDto, Acknowledgment ack) {
-        if (externalKafkaTransactionDto == null) {
+    public void listenTransactions(final ExternalTransactionDto externalTransactionDto, Acknowledgment ack) {
+        if (externalTransactionDto == null) {
             log.warn("Received transactionKafkaDto is null");
             return;
         }
-        log.info("Received transaction: {}", externalKafkaTransactionDto);
-        defaultDispatcherService.validateAndDispatch(
-                externalKafkaTransactionDto.getPid(),
-                externalKafkaTransactionDto.getPAmount());
+        log.info("Received transaction: {}", externalTransactionDto);
+        defaultDispatcherService.validateAndDispatchDefault(
+                externalTransactionDto.getPId(),
+                externalTransactionDto.getPAmount());
         ack.acknowledge();
     }
 }

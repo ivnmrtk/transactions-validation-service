@@ -1,7 +1,7 @@
 package com.github.ivnmrtk.transactionsvalidationservice.service;
 
 import com.github.ivnmrtk.transactionsvalidationservice.dto.NotificationDto;
-import com.github.ivnmrtk.transactionsvalidationservice.dto.ValidationState;
+import com.github.ivnmrtk.transactionsvalidationservice.enumerations.ValidationState;
 import com.github.ivnmrtk.transactionsvalidationservice.exception.ValidationException;
 import com.github.ivnmrtk.transactionsvalidationservice.repository.TransactionsRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +34,7 @@ public class NotificationDtoValidationService {
         } else {
             final var savedTransaction = optionalTransaction.get();
             notificationDto.setSavedAmount(savedTransaction.getAmount());
-            //Сверка транзакции по сумме
+            //Сверка транзакции по сумме и проставления статуса результата сверки
             if (txAmount.compareTo(savedTransaction.getAmount()) == 0) {
                 notificationDto.setValidationState(ValidationState.CORRECT);
             } else {

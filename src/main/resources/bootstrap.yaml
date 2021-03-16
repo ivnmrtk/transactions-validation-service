@@ -1,3 +1,0 @@
-embedded:
-  kafka:
-    enabled: false

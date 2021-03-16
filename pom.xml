@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.github.ivnmrtk</groupId>
     <artifactId>transactions-validation-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>transactions-validation-service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -76,13 +76,14 @@
             <groupId>com.playtika.testcontainers</groupId>
             <artifactId>embedded-postgresql</artifactId>
             <version>${embeded.postgres.version}</version>
-            <!--Test scope disabled to run service connected with db within container -->
+            <!--Test scope disabled to run service connected with db container in standalone without docker-compose or other stuff -->
             <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>com.playtika.testcontainers</groupId>
             <artifactId>embedded-kafka</artifactId>
             <version>${embeded.kafka.version}</version>
+            <!--Test scope disabled to run service connected with kafka container in standalone without docker-compose or other stuff -->
             <!--scope>test</scope-->
         </dependency>
     </dependencies>

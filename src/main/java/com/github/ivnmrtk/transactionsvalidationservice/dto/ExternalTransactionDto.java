@@ -8,14 +8,17 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+/**
+ * Dto для получения транзакции из внешних источников
+ */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ExternalKafkaTransactionDto {
+public class ExternalTransactionDto {
     @JsonProperty("PID")
-    private Integer pid;
+    private Integer pId;
     @JsonProperty("PAMOUNT")
     private BigDecimal pAmount;
     @JsonProperty("PDATA")
