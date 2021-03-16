@@ -1,0 +1,19 @@
+###Request with correct result
+POST http://localhost:1221/transactions/send-and-check
+Content-Type: application/json
+
+{
+  "PID": 123,
+  "PAMOUNT": 100.050,
+  "PDATA": 20160101120000
+}
+
+###Request with not_found result
+POST http://localhost:1221/transactions/send-and-check
+Content-Type: application/json
+
+{
+"PID": 300,
+"PAMOUNT": 197.70,
+"PDATA": 20160101120033
+}
